@@ -14,11 +14,16 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
-import com.oasis.poc1.entity.PetroleumWell;
+import com.oasis.poc1.entity.TileSubsetQuery;
 import com.oasis.poc1.entity.Token;
+import com.oasis.poc1.entity.WellSubsetQuery;
 
-
-
+/**************
+ * Class: Poc1Service 
+ * 
+ * Purpose: Acts as a service layer to establish communication between ArcGIS Enterprise & Core Web.
+ *     Poc1 - BiDirectional Communication - ArcGIS Enterprise to Core Web App
+ */
 @Service
 public class Poc1Service {
 	
@@ -27,10 +32,14 @@ public class Poc1Service {
 	
 	Logger logger = LoggerFactory.getLogger(Poc1Service.class);
 	
-	String receivedToken = "";
+	String receivedToken = "";	
 	
-
-    //Testing POST API using Rest Template 
+	/**************
+	 * Method: getGenerateTokenAPI 
+	 * Purpose: This method is used to receive a token as response from ArcGis Enterprise API
+	 * Input parameters: None
+	 * @return Token as response
+	 */
 	public ResponseEntity<Token> getGenerateTokenAPI(){			
 		logger.info("inside getGenerateTokenAPI()");
 		RestTemplate restTemplate = new RestTemplate();
@@ -62,8 +71,13 @@ public class Poc1Service {
 		return response;
 	}
 
-    //Testing POST API using Rest Template 
-	public ResponseEntity<PetroleumWell> getQueryAllWells(){	
+	/**************
+	 * Method: getQueryAllWells 
+	 * Purpose: This method is used to test Petroleum Well Subset API Query of ArcGIS Enterprise
+	 * Input parameters: None
+	 * @return PetroleumWell 
+	 */
+	public ResponseEntity<WellSubsetQuery> getQueryAllWells(){	
 		
 		logger.info("inside getQueryAllWells()");
 		RestTemplate restTemplate = new RestTemplate();
@@ -86,12 +100,12 @@ public class Poc1Service {
 
 		HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map, headers);
 
-		ResponseEntity<PetroleumWell> responseEntity =null;
+		ResponseEntity<WellSubsetQuery> responseEntity =null;
 		
-		ResponseEntity<PetroleumWell> response = restTemplate.postForEntity(tokenUrl,request,PetroleumWell.class);
+		ResponseEntity<WellSubsetQuery> response = restTemplate.postForEntity(tokenUrl,request,WellSubsetQuery.class);
 		if(Objects.nonNull(response)) {
 			logger.info("..Response received successfully from ArcGIS Petroleum Well API ..");
-			PetroleumWell petroleumWell = response.getBody();
+			WellSubsetQuery petroleumWell = response.getBody();
 			logger.info("Petroleum Well API Response:" + petroleumWell);
 			responseEntity= ResponseEntity.status(200).contentType(MediaType.APPLICATION_JSON).body(petroleumWell);
 		}else {
@@ -101,6 +115,49 @@ public class Poc1Service {
 		logger.info("..Testing ArcGIS Enterprise Petroleum Well API ends..");			
 		return responseEntity;
 		
+	}
+	
+	
+	/**************
+	 * Method: getTileDrainageAreaSubsetQuery 
+	 * Purpose: This method is used to test Tile Drainage Area Subset API Query of ArcGIS Enterprise
+	 * Input parameters: None
+	 * @return Tile Query response: TileSubsetQuery
+	 */
+	public ResponseEntity<TileSubsetQuery> getTileDrainageAreaSubsetQuery(){			
+		logger.info("Poc1Service - getTileDrainageAreaSubsetQuery() begins");		
+		RestTemplate restTemplate = new RestTemplate();
+		ResponseEntity<TileSubsetQuery> responseEntity =null;	
+		
+		if(receivedToken.isEmpty()) {
+			logger.info("Token String is Empty. Generating Token");
+			getGenerateTokenAPI();
+			logger.info("Token String: " +  receivedToken);
+		}
+		String tileDrainageAreaSubset="https://services5.arcgis.com/D9dI3nY76wGaru7T/arcgis/rest/services/TILE_DRAINAGE_AREA_subset/FeatureServer";
+		String tileUrl=tileDrainageAreaSubset+"/query?token="+receivedToken;   
+				
+		HttpHeaders header = new HttpHeaders();
+	
+		MultiValueMap<String,String> requestbody = new LinkedMultiValueMap<String,String>();		
+		requestbody.add("f", "json");
+		requestbody.add("layerDefs", "{\"6\": \"YEAR_OF_INSTALLATION = 2021\"}");
+		
+		HttpEntity<MultiValueMap<String,String>> request = new HttpEntity<MultiValueMap<String, String>>(requestbody,header);
+		
+		logger.info("Executing ArcGIS Enterprise Tile Drainage Area Subset API: " +tileUrl);
+		
+		ResponseEntity<TileSubsetQuery> response = restTemplate.postForEntity(tileUrl,request,TileSubsetQuery.class);;		
+		if(Objects.nonNull(response)){
+			TileSubsetQuery tileDrainageArea = response.getBody();					
+			logger.info("*** Success Response received from ArcGIS Tile Drainage Area Subset API .." + tileDrainageArea);
+			responseEntity= ResponseEntity.status(200).contentType(MediaType.APPLICATION_JSON).body(tileDrainageArea);
+		}else {
+			logger.error("*** ArcGIS Enterprise Tile Drainage Area Subset Call Failed : Empty Response..");				
+			responseEntity=ResponseEntity.noContent().build();
+		}		
+		logger.info("Poc1Service - getTileDrainageAreaSubsetQuery() ends");			
+		return responseEntity;			
 	}
 	
 	

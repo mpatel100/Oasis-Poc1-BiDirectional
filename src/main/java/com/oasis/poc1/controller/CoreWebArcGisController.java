@@ -2,6 +2,7 @@ package com.oasis.poc1.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,6 +18,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
  *          Poc1 - BiDirectional Communication - Core Web to ArcGIS Enterprise
  */
 
+@CrossOrigin(origins = "https://oasis-poc2-dynamicui.azurewebsites.net")
 @Tag(name = "Poc 1 - BiDirectional Communication", description = "CoreWeb App - ArcGIS Communucation")
 @RestController
 @RequestMapping("/oasis/poc1")

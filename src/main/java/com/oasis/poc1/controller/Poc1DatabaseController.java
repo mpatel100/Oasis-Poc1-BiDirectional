@@ -4,7 +4,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.oasis.poc1.entity.Oasis_Poc1;
@@ -15,7 +17,9 @@ import com.oasis.poc1.service.Poc1DatabaseService;
  * Purpose: Rest controller class that has functions to communicates with Database.
  * 
  */
+@CrossOrigin(origins = "https://oasis-poc2-dynamicui.azurewebsites.net")
 @RestController
+@RequestMapping("/oasis/poc1")
 public class Poc1DatabaseController {
 	
 	@Autowired

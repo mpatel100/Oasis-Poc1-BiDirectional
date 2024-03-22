@@ -1,11 +1,19 @@
 package com.oasis.poc1.entity;
 
 import java.io.Serializable;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 @SuppressWarnings("serial")
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 public class Geometry implements Serializable {
 	
+
+	private List<List<Double []>> rings;
+
 	private Double x;
+	
 	private Double y;
 	
 	public Double getX() {
@@ -19,12 +27,19 @@ public class Geometry implements Serializable {
 	}
 	public void setY(Double y) {
 		this.y = y;
+	}	
+	public List<List<Double[]>> getRings() {
+		return rings;
+	}
+	public void setRings(List<List<Double[]>> rings) {
+		this.rings = rings;
 	}
 	
 	@Override
 	public String toString() {
-		return "Geometry [x=" + x + ", y=" + y + "]";
+		return "Geometry [rings=" + rings + ", x=" + x + ", y=" + y + "]";
 	}
+	
 	
 	
 	
