@@ -9,6 +9,15 @@ import org.springframework.web.bind.annotation.RestController;
 import com.oasis.poc1.entity.OutputJson;
 import com.oasis.poc1.service.CoreWebArcGisService;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
+/**************
+ * Class: CoreWebArcGisController 
+ * 
+ * Purpose: Rest controller class that sends information from Core Web to ArcGIS Enterprise.
+ *          Poc1 - BiDirectional Communication - Core Web to ArcGIS Enterprise
+ */
+
+@Tag(name = "Poc 1 - BiDirectional Communication", description = "CoreWeb App - ArcGIS Communucation")
 @RestController
 @RequestMapping("/oasis/poc1")
 public class CoreWebArcGisController {
@@ -16,6 +25,12 @@ public class CoreWebArcGisController {
 	@Autowired
 	CoreWebArcGisService service;
 	
+	/**************
+	 * Method: getCoreWebArcGisCommunication 
+	 * Purpose: This method will return updated UI form elements in the response
+	 * Input parameters: None
+	 * @return OutputJson
+	 */
 	@GetMapping("/getCoreWebArcGisCommunication")
 	public ResponseEntity<OutputJson[]> getCoreWebArcGisCommunication(){
 		ResponseEntity<OutputJson[]> responseEntity=service.getCoreWebArcGisCommunication();
