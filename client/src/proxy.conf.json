@@ -3,5 +3,10 @@
       "target": "https://oasis-poc1-bidirectional-poc1.azuremicroservices.io",
       "secure": false,
       "changeOrigin": true
+    },
+    "/oasis/poc2/*": {
+      "target": "https://oasis-poc1-bidirectional-poc1.azuremicroservices.io",
+      "secure": false,
+      "changeOrigin": true
     }
 }

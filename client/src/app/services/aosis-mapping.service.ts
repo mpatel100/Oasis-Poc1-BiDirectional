@@ -11,8 +11,9 @@ export class AosisMappingService {
   private baseUrl = location.host?.includes('localhost') ? '' : `${environment.baseUrl}`; 
   constructor(private httpClient: HttpClient) { }
 
-  getMockData() {
-    return this.httpClient.get(`assets/mockData.json`, { responseType: 'json' })
+  getFormData() {
+    const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
+    return this.httpClient.get(`${this.baseUrl}/oasis/poc2/getAllPoc2Entities`,{ headers, responseType: 'json'})
      .pipe(
       map((data: any) => {
         return data;
