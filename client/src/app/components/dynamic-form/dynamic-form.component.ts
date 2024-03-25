@@ -157,13 +157,11 @@ export class DynamicFormComponent implements OnInit {
         row['timestamp'] = new Date();
         return row;
       });
-      var a = document.createElement('a');
-      a.setAttribute('href', 'data:json;charset=utf-u,'+encodeURIComponent(JSON.stringify(outputData)));
-      a.setAttribute('download', 'output.json');
-      a.click();
-      
-     this.aosisMappingService.submitFormData(this.formData).subscribe((data) => {
-        console.log(data);
+     this.aosisMappingService.submitFormData(outputData).subscribe(() => {    
+        var a = document.createElement('a');
+        a.setAttribute('href', 'data:json;charset=utf-u,'+encodeURIComponent(JSON.stringify(outputData)));
+        a.setAttribute('download', 'output.json');
+        a.click();
       });
     }
   }
