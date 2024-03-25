@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.oasis.poc1.entity.Oasis_Poc1;
+import com.oasis.poc1.entity.OasisPoc1;
 import com.oasis.poc1.service.Poc1DatabaseService;
 /**************
  * Class: Poc1DatabaseController 
@@ -42,9 +42,9 @@ public class Poc1DatabaseController {
 	 * Input parameters: None
 	 * @return List of Oasis_Poc1
 	 */
-	@GetMapping("/getAllEntitiesfromDb")
-	public List<Oasis_Poc1> getAllEntitiesFromDatabase(){
-		List<Oasis_Poc1> entityList = service.getAllEntitiesfromDatabase();
+	@GetMapping("/getAllPoc1Entities")
+	public List<OasisPoc1> getAllEntitiesFromDatabase(){
+		List<OasisPoc1> entityList = service.getAllEntitiesfromDatabase();
 		return entityList;
 	}
 	
