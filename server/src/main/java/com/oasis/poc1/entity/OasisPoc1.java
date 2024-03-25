@@ -15,11 +15,12 @@ public class OasisPoc1 {
 	private String labelName;
 	@Column(name ="entity_name")
 	private String entityName;
+	@Column(name ="value")
 	private String value;
 	@Column(name ="attribute_name")
 	private String attribute;
 	@Column(name ="saved_timestamp")
-	private String timestamp;
+	private String timeStamp;
 	
 	public Integer getId() {
 		return id;
@@ -51,17 +52,16 @@ public class OasisPoc1 {
 	public void setAttribute(String attribute) {
 		this.attribute = attribute;
 	}
-	public String getTimestamp() {
-		return timestamp;
+	public String getTimeStamp() {
+		return timeStamp;
 	}
-	public void setTimestamp(String timestamp) {
-		this.timestamp = timestamp;
+	public void setTimeStamp(String timeStamp) {
+		this.timeStamp = timeStamp;
 	}
-	
 	@Override
 	public String toString() {
 		return "OasisPoc1 [id=" + id + ", labelName=" + labelName + ", entityName=" + entityName + ", value=" + value
-				+ ", attribute=" + attribute + ", timestamp=" + timestamp + "]";
+				+ ", attribute=" + attribute + ", timestamp=" + timeStamp + "]";
 	}
 	
 	

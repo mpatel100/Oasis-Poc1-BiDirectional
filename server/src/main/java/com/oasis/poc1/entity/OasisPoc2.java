@@ -15,11 +15,13 @@ public class OasisPoc2 {
 	private String labelName;
 	@Column(name ="entity_name")
 	private String entityName;
+	@Column(name ="value")
 	private String value;
 	@Column(name ="control_type")
 	private String controlType;
 	@Column(name ="attribute_name")
 	private String attribute;
+	@Column(name ="tooltip")
 	private String tooltip;	
 	@Column(name ="saved_timestamp")
 	private String timestamp;
@@ -72,17 +74,11 @@ public class OasisPoc2 {
 	public void setTimestamp(String timestamp) {
 		this.timestamp = timestamp;
 	}
-	
 	@Override
 	public String toString() {
 		return "OasisPoc2 [id=" + id + ", labelName=" + labelName + ", entityName=" + entityName + ", value=" + value
 				+ ", controlType=" + controlType + ", attribute=" + attribute + ", tooltip=" + tooltip + ", timestamp="
 				+ timestamp + "]";
 	}
-	
-	
-	
-	
-	
 	
 }

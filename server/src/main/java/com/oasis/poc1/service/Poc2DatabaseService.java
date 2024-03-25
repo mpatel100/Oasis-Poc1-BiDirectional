@@ -45,5 +45,18 @@ public class Poc2DatabaseService {
 		logger.info("Poc2DatabaseService - getAllEntitiesFromTable() ends");
 		return entityList;
 	}
+	
+	public void updateDynamicTemplateEntities(List<OasisPoc2> entityList) {
+		logger.info("Poc2DatabaseService - updateDynamicTemplateEntities() begins");
+		if(Objects.nonNull(entityList) && entityList.size()>0) {
+			for (OasisPoc2 entity: entityList) {
+				repository.save(entity);				
+			}
+			logger.info("All template entities are updated in DB :"+ entityList.toString());
+		}else {
+			logger.info("Dynamic Template Entity List is empty");
+		}
+		logger.info("Poc2DatabaseService - updateDynamicTemplateEntities() ends");
+	}
 
 }
