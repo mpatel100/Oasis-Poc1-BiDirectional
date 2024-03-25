@@ -1,0 +1,7 @@
+{
+    "/oasis/poc1/*": {
+      "target": "https://oasis-poc1-bidirectional-poc1.azuremicroservices.io",
+      "secure": false,
+      "changeOrigin": true
+    }
+}
