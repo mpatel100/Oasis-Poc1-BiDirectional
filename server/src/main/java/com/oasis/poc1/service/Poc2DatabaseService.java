@@ -1,5 +1,7 @@
 package com.oasis.poc1.service;
 
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -34,7 +36,7 @@ public class Poc2DatabaseService {
 	 * @return List <Oasis_Poc2>
 	 */	
 	public List<OasisPoc2> getAllEntitiesFromTable(){
-		logger.info("Poc2DatabaseService - getAllEntitiesFromTable() begins");
+		logger.info("**** inside getAllEntitiesFromTable() begins ****");
 		List<OasisPoc2> entityList = new ArrayList<OasisPoc2>();
 		entityList = repository.findAll();
 		if(Objects.nonNull(entityList)&& entityList.size()!=0) {
@@ -42,21 +44,30 @@ public class Poc2DatabaseService {
 		}else {
 			logger.error("Entity List is empty is Database");
 		}
-		logger.info("Poc2DatabaseService - getAllEntitiesFromTable() ends");
+		logger.info("**** inside getAllEntitiesFromTable() ends ****");
 		return entityList;
 	}
 	
+	/**************
+	 * Method: updateDynamicTemplateEntities 
+	 * Purpose: This method will update the entity values stored in Oasis_Poc2 Table as per the changes in UI
+	 * Input parameters: List<OasisPoc2>
+	 * @return none
+	 */		
 	public void updateDynamicTemplateEntities(List<OasisPoc2> entityList) {
-		logger.info("Poc2DatabaseService - updateDynamicTemplateEntities() begins");
+		
+		logger.info("**** inside updateDynamicTemplateEntities() begins *****");
 		if(Objects.nonNull(entityList) && entityList.size()>0) {
 			for (OasisPoc2 entity: entityList) {
+				//Setting timestamp before saving
+				entity.setTimestamp(Timestamp.from(Instant.now()).toString());
 				repository.save(entity);				
 			}
 			logger.info("All template entities are updated in DB :"+ entityList.toString());
 		}else {
 			logger.info("Dynamic Template Entity List is empty");
 		}
-		logger.info("Poc2DatabaseService - updateDynamicTemplateEntities() ends");
+		logger.info("***** inside updateDynamicTemplateEntities() ends *****");
 	}
 
 }
