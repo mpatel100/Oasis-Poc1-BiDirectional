@@ -22,7 +22,7 @@ import com.oasis.poc1.service.Poc2DatabaseService;
 
 @CrossOrigin(origins = "https://oasis-poc2-dynamicui.azurewebsites.net")
 @RestController
-@RequestMapping("/oasis/poc1")
+@RequestMapping("/oasis/poc2")
 public class Poc2DatabaseController {
 
 	@Autowired
