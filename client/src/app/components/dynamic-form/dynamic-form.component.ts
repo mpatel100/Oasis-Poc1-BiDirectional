@@ -161,6 +161,10 @@ export class DynamicFormComponent implements OnInit {
       a.setAttribute('href', 'data:json;charset=utf-u,'+encodeURIComponent(JSON.stringify(outputData)));
       a.setAttribute('download', 'output.json');
       a.click();
+      
+     this.aosisMappingService.submitFormData(this.formData).subscribe((data) => {
+        console.log(data);
+      });
     }
   }
 

@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'envrionments/envrionment';
-import { catchError, map, throwError } from 'rxjs';
+import { catchError, map, of, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ export class AosisMappingService {
   constructor(private httpClient: HttpClient) { }
 
   getFormData() {
-    const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
     return this.httpClient.get(`${this.baseUrl}/oasis/poc2/getAllPoc2Entities`,{ headers, responseType: 'json'})
      .pipe(
       map((data: any) => {
@@ -20,6 +20,22 @@ export class AosisMappingService {
       }),
       catchError((error: HttpErrorResponse) => {
         return throwError(() => error);
+      }));
+  }
+
+  submitFormData(formData: any) {
+    let headers = new HttpHeaders();
+    headers.set('Content-Type', 'application/json');
+    headers.set('accept', '*/*');
+
+    return this.httpClient.put<any>(`${this.baseUrl}/oasis/poc2/updateDynamicEntity`, formData, { headers: headers })
+     .pipe(
+      map((data: any) => { 
+        return data;
+      }),
+      catchError((error: HttpErrorResponse) => {
+        return of({});
+        //return throwError(() => error);
       }));
   }
 
