@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.oasis.poc1.entity.Oasis_Poc2;
+import com.oasis.poc1.entity.OasisPoc2;
 import com.oasis.poc1.repository.OasisPoc2Repo;
 
 /**************
@@ -33,9 +33,9 @@ public class Poc2DatabaseService {
 	 * Input parameters: None
 	 * @return List <Oasis_Poc2>
 	 */	
-	public List<Oasis_Poc2> getAllEntitiesFromTable(){
+	public List<OasisPoc2> getAllEntitiesFromTable(){
 		logger.info("Poc2DatabaseService - getAllEntitiesFromTable() begins");
-		List<Oasis_Poc2> entityList = new ArrayList<Oasis_Poc2>();
+		List<OasisPoc2> entityList = new ArrayList<OasisPoc2>();
 		entityList = repository.findAll();
 		if(Objects.nonNull(entityList)&& entityList.size()!=0) {
 			logger.info("**** Respose : "+ entityList.toString()+" ****");

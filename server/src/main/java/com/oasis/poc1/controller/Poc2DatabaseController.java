@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.oasis.poc1.entity.Oasis_Poc2;
+import com.oasis.poc1.entity.OasisPoc2;
 import com.oasis.poc1.service.Poc2DatabaseService;
 
 /**************
@@ -35,8 +35,8 @@ public class Poc2DatabaseController {
 	 * @return List<Oasis_Poc2>
 	 */
 	@GetMapping("/getAllPoc2Entities")
-	public List<Oasis_Poc2> getAllEntitiesFromTable(){
-		List<Oasis_Poc2> entityList = service.getAllEntitiesFromTable();
+	public List<OasisPoc2> getAllEntitiesFromTable(){
+		List<OasisPoc2> entityList = service.getAllEntitiesFromTable();
 		return entityList;
 	}
 	
