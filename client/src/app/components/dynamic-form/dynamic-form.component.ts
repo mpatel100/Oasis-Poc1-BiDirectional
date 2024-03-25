@@ -12,21 +12,21 @@ export class DynamicFormComponent implements OnInit {
   form = new FormGroup({});
   model: any = {}; 
   fields: FormlyFieldConfig[] = [];
-  mockData: any;
+  formData: any;
   emailPattern = '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}';
 
   constructor(private aosisMappingService: AosisMappingService) { }
 
   ngOnInit(): void {
-    this.loadMockData();
+    this.loadData();
   }
 
-  loadMockData() {
-    this.aosisMappingService.getMockData()
+  loadData() {
+    this.aosisMappingService.getFormData()
     .pipe((take(1)))
       .subscribe({
         next: (response: any) =>{
-            this.mockData = response.data;
+            this.formData = response;
             this.defineControls();
             return response;
         },
@@ -39,7 +39,7 @@ export class DynamicFormComponent implements OnInit {
   }
 
   defineControls():void {
-    this.fields = this.mockData.map((row: any) => {
+    this.fields = this.formData.map((row: any) => {
       
       let fieldConfig: FormlyFieldConfig = {
       };
@@ -73,22 +73,22 @@ export class DynamicFormComponent implements OnInit {
           if(row['attribute'] === 'gender') {
             fieldConfig.props =   {
               name: row['attribute'],
-              label: row['label'],
+              label: row['labelName'],
               type: 'radio',
               tooltip: {
                 content: row['tooltip']
               },  
               options: [{ value: 'Male', key: 'M' }, { value: 'Female', key: 'F' }],
-              required: row['validation']?.required
+              required: true
             };
           } else  if(row['attribute'] === 'email') {
             fieldConfig.props =   {
-              label: row['label'],
+              label: row['labelName'],
               type: 'input',  
               tooltip: {
                 content: row['tooltip']
               },
-              required: row['validation']?.required,
+              required: true,
               pattern: this.emailPattern
             };
             fieldConfig.validation = {
@@ -98,13 +98,13 @@ export class DynamicFormComponent implements OnInit {
             };
           } else {
             fieldConfig.props = {
-              label: row['label'],
+              label: row['labelName'],
               type: 'input',  
               tooltip: {
                 content: row['tooltip']
               },
-              required: row['validation']?.required,
-              minLength: row['validation']?.minLength
+              required: true,
+              minLength: 2
             };
           }
         break;
@@ -114,14 +114,14 @@ export class DynamicFormComponent implements OnInit {
         case 'date':
           fieldConfig.type = 'date';
           fieldConfig.props = {
-            label: row['label'],
+            label: row['labelName'],
             type: 'date',
             placeholder: 'yyyy-mm-dd',
             format:'yyyy-mm-dd',
             tooltip: {
                 content: row['tooltip']
               },
-            required: row['validation']?.required,
+            required: true,
             datepickerOptions: {
              // min: new Date()
             },
@@ -130,12 +130,12 @@ export class DynamicFormComponent implements OnInit {
         case 'double':
           fieldConfig.type = 'number';
           fieldConfig.props = {
-            label: row['label'],
+            label: row['labelName'],
             type: 'number',
             tooltip: {
                 content: row['tooltip']
               },
-            required: row['validation']?.required
+            required: true
           };
           break;
         default:
@@ -149,14 +149,12 @@ export class DynamicFormComponent implements OnInit {
   onSubmit() {
     if(this.form.invalid) return;
     console.log(this.model);
-    if(this.mockData) {
-      const outputData = this.mockData.map((row: any) => {
+    if(this.formData) {
+      const outputData = this.formData.map((row: any) => {
         if(this.model[row.attribute]) {
           row.value = this.model[row.attribute];
         }
-        row.timestamp = new Date();
-        delete row['tooltip'];
-        delete row['validation'];
+        row['timestamp'] = new Date();
         return row;
       });
       var a = document.createElement('a');

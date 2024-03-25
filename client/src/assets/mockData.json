@@ -1,83 +1,74 @@
 {
-    "data": [
+    "data":[
         {
+            "id": 1,
+            "labelName": "First Name",
             "entityName": "site",
-            "label": "First Name",
+            "value": "John",
             "controlType": "varchar",
             "attribute": "fname",
-            "value": "John",    
             "tooltip": "Dynamic Form First Name",
-            "validation": {
-                "required": true,
-                "minLength": 2
-            }
+            "timestamp": "2024-03-25"
         },
         {
+            "id": 2,
+            "labelName": "Last Name",
             "entityName": "site",
-            "label": "Last Name",
+            "value": "Doss",
             "controlType": "varchar",
             "attribute": "lname",
-            "value": "Doss",
             "tooltip": "Dynamic Form Last Name",
-            "validation": {
-                "required": true,
-                "minLength": 2
-            }
+            "timestamp": "2024-03-25"
         },
         {
+            "id": 3,
+            "labelName": "Email",
             "entityName": "site",
-            "label": "Email",
-            "controlType": "varchar",
-            "attribute": "email",
             "value": "John.Doss@abc.com",
+            "controlType": "varchar",
+            "attribute": "site",
             "tooltip": "Dynamic Form Email",
-            "validation": {
-                "required": true
-            }
+            "timestamp": "2024-03-25"
         },
         {
+            "id": 4,
+            "labelName": "Weight",
             "entityName": "site",
-            "label": "Weight",
+            "value": "35",
             "controlType": "double",
             "attribute": "weight",
-            "value": "35",
             "tooltip": "Dynamic Form Weight",
-            "validation": {
-                "required": false
-            }
+            "timestamp": "2024-03-25"
         },
         {
+            "id": 5,
+            "labelName": "Height",
             "entityName": "site",
-            "label": "Height",
+            "value": "120",
             "controlType": "double",
             "attribute": "height",
-            "value": "120",
             "tooltip": "Dynamic Form Height",
-            "validation": {
-                "required": true
-            }
+            "timestamp": "2024-03-25"
         },
         {
+            "id": 6,
+            "labelName": "Gender",
             "entityName": "site",
-            "label": "Gender",
+            "value": "M",
             "controlType": "varchar",
             "attribute": "gender",
             "tooltip": "Dynamic Form Gender",
-            "value": "F",
-            "validation": {
-                "required": true
-            }
+            "timestamp": "2024-03-25"
         },
         {
+            "id": 7,
+            "labelName": "Date",
             "entityName": "site",
-            "label": "Date",
-            "controlType": "date",
+            "value": "2024-03-25",
+            "controlType": "varchar",
             "attribute": "date",
             "tooltip": "Dynamic Form Date",
-            "value": "2024-03-04",
-            "validation": {
-                "required": true
-            }
+            "timestamp": "2024-03-25"
         }
     ]
 }
