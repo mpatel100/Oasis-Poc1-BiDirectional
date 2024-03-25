@@ -42,7 +42,7 @@ public class Poc1DatabaseController {
 	 * Input parameters: None
 	 * @return List of Oasis_Poc1
 	 */
-	@GetMapping("/getAllEntitiesfromDb")
+	@GetMapping("/getAllPoc1Entities")
 	public List<Oasis_Poc1> getAllEntitiesFromDatabase(){
 		List<Oasis_Poc1> entityList = service.getAllEntitiesfromDatabase();
 		return entityList;
