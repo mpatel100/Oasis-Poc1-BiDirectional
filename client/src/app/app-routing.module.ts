@@ -9,11 +9,11 @@ const routes: Routes = [{
   component: DynamicFormComponent
 },
 {
-  path: 'welcome',
+  path: 'bidirectional-poc1',
   component: WelcomePageComponent
 },
 {
-  path: 'displaydata',
+  path: 'query-all-well',
   component: DisplayDataGridComponent
 }
 ];

@@ -5,7 +5,7 @@ import { AosisMappingService } from '@app/services/aosis-mapping.service';
 import { TokenDto } from '@app/types/token-dto';
 import { take } from 'rxjs/operators';
 @Component({  
-  selector: 'welcome-page',
+  selector: 'bidirectional-poc1',
   templateUrl: `./welcome-page.component.html`,
   styleUrl: `./welcome-page.component.scss`
 })
@@ -58,6 +58,6 @@ export class WelcomePageComponent implements OnInit {
   }
 
   getQueryAllWell() {
-    this.router.navigateByUrl('/displaydata');
+    this.router.navigateByUrl('/query-all-well');
   }
 }

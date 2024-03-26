@@ -14,7 +14,7 @@ export class DynamicFormComponent implements OnInit {
   fields: FormlyFieldConfig[] = [];
   formData: any;
   emailPattern = '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}';
-  submitted = false
+  submittedMessage = '';
   constructor(private aosisMappingService: AosisMappingService) { }
 
   ngOnInit(): void {
@@ -157,19 +157,26 @@ export class DynamicFormComponent implements OnInit {
         row['timestamp'] = new Date();
         return row;
       });
-     this.aosisMappingService.submitFormData(outputData).subscribe(() => {    
-        console.log('Successfully submitted');
-        this.submitted = true;
+
+      if(isDownload) {
+        this.submittedMessage = 'Downloaded Successfully';
+        console.log(this.submittedMessage);
         setTimeout(() => {
-          this.submitted = false;
-        }, 2000);
-        if(isDownload) {
-          var a = document.createElement('a');
-          a.setAttribute('href', 'data:json;charset=utf-u,'+encodeURIComponent(JSON.stringify(outputData)));
-          a.setAttribute('download', 'output.json');
-          a.click();
-        }
-      });
+          this.submittedMessage = '';
+        }, 5000);
+        var a = document.createElement('a');
+        a.setAttribute('href', 'data:json;charset=utf-u,'+encodeURIComponent(JSON.stringify(outputData)));
+        a.setAttribute('download', 'output.json');
+        a.click();
+      } else {
+        this.aosisMappingService.submitFormData(outputData).subscribe(() => {    
+          this.submittedMessage = 'Submitted Successfully';
+          console.log(this.submittedMessage);
+          setTimeout(() => {
+            this.submittedMessage = '';
+          }, 5000);
+        });
+      }
     }
   }
 
