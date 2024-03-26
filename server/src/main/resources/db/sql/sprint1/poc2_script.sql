@@ -12,7 +12,7 @@ CREATE TABLE dbo.Oasis_Poc2 (
 	control_type varchar(50) NULL,
 	attribute_name varchar(50) NULL,
 	tooltip varchar(50) NULL,
-	saved_timestamp date NULL,
+	saved_timestamp datetime NULL,
 	CONSTRAINT PK_Oasis_Poc2 PRIMARY KEY (id)
 );
 
