@@ -25,7 +25,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
  */
 
 @Tag(name = "OASIS - POC 1", description = "Core Web - ArcGIS Communucation")
-@CrossOrigin(origins = "https://oasis-poc2-dynamicui.azurewebsites.net")
+@CrossOrigin(origins = {"https://oasis-poc2-dynamicui.azurewebsites.net","http://localhost:4200"})
 @RestController
 @RequestMapping("/oasis/poc1")
 public class Poc1Controller {

@@ -17,7 +17,7 @@ import com.oasis.poc1.service.Poc1DatabaseService;
  * Purpose: Rest controller class that has functions to communicates with Database.
  * 
  */
-@CrossOrigin(origins = "https://oasis-poc2-dynamicui.azurewebsites.net")
+@CrossOrigin(origins = {"https://oasis-poc2-dynamicui.azurewebsites.net","http://localhost:4200"})
 @RestController
 @RequestMapping("/oasis/poc1")
 public class Poc1DatabaseController {
