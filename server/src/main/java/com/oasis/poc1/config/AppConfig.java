@@ -13,7 +13,12 @@ import org.springframework.web.client.RestTemplate;
 
 @Configuration
 public class AppConfig {
-	
+	/**************
+	 * Method: getRestTemplate 
+	 * Purpose: Bean Creation-This method will return an object of Rest Template 	 
+	 * Input parameters: None
+	 * @return RestTemplate
+	 */
 	@Bean
 	public RestTemplate getRestTemplate() {
 		return new RestTemplate();

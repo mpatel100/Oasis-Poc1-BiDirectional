@@ -1,5 +1,7 @@
 package com.oasis.poc1.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -7,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.oasis.poc1.entity.OutputJson;
+import com.oasis.poc1.entity.OasisPoc2;
 import com.oasis.poc1.service.CoreWebArcGisService;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -34,8 +36,8 @@ public class CoreWebArcGisController {
 	 * @return OutputJson
 	 */
 	@GetMapping("/getCoreWebArcGisCommunication")
-	public ResponseEntity<OutputJson[]> getCoreWebArcGisCommunication(){
-		ResponseEntity<OutputJson[]> responseEntity=service.getCoreWebArcGisCommunication();
+	public ResponseEntity<List<OasisPoc2>> getCoreWebArcGisCommunication(){
+		ResponseEntity<List<OasisPoc2>> responseEntity=service.getCoreWebArcGisCommunication();
 		return responseEntity;	
 	}
 	

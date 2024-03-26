@@ -38,7 +38,7 @@ public class Poc1DatabaseController {
 	
 	/**************
 	 * Method: getAllEntitiesFromDatabase 
-	 * Purpose: This method will return all the entities store in DB
+	 * Purpose: This method will return all the entities store in Oasis_Poc1 table
 	 * Input parameters: None
 	 * @return List of Oasis_Poc1
 	 */

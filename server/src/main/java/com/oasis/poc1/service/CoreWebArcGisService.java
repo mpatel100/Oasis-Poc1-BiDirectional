@@ -1,23 +1,17 @@
 package com.oasis.poc1.service;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.Objects;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.ResourceLoader;
+
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.oasis.poc1.entity.OutputJson;
+import com.oasis.poc1.entity.OasisPoc2;
+
 
 /**************
  * Class: CoreWebArcGisService 
@@ -28,9 +22,13 @@ import com.oasis.poc1.entity.OutputJson;
 
 @Service
 public class CoreWebArcGisService {
-	
+	/*
 	@Autowired
 	ResourceLoader resourceLoader;
+	*/
+	
+	@Autowired
+	Poc2DatabaseService poc2DbService;
 	
 	Logger logger = LoggerFactory.getLogger(CoreWebArcGisService.class);
 	
@@ -41,6 +39,22 @@ public class CoreWebArcGisService {
 	 * Input parameters: None
 	 * @return OutputJson[]
 	 */
+	 public ResponseEntity<List<OasisPoc2>> getCoreWebArcGisCommunication(){
+		logger.info("**** inside getCoreWebArcGisCommunication() begins ****");
+		ResponseEntity<List<OasisPoc2>> responseEntity=null;			
+		List<OasisPoc2> entityList = poc2DbService.getAllEntitiesFromTable();
+		if(entityList.size()>0) {	
+			logger.info("**** Response: "+ entityList.toString()+ "****");
+			responseEntity = ResponseEntity.status(200).contentType(MediaType.APPLICATION_JSON).body(entityList);
+		}else {
+			logger.error(" Entity List in empty is database ");
+			responseEntity = ResponseEntity.noContent().build();
+		}
+		logger.info("**** inside getCoreWebArcGisCommunication() ends ****");
+		return responseEntity;	
+	}
+	
+	/*
 	public ResponseEntity<OutputJson[]> getCoreWebArcGisCommunication(){
 		logger.info("CoreWebArcGisService - getCoreWebArcGisCommunication() begins");
 		ResponseEntity<OutputJson[]> responseEntity=null;		
@@ -70,5 +84,7 @@ public class CoreWebArcGisService {
 		}
 		logger.info("CoreWebArcGisService - getCoreWebArcGisCommunication() ends");
 		return responseEntity;	
-	}
+	}*/
+	
+	
 }

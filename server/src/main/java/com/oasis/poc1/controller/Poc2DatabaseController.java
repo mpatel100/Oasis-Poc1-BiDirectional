@@ -42,14 +42,22 @@ public class Poc2DatabaseController {
 	 */
 	@GetMapping("/getAllPoc2Entities")
 	public List<OasisPoc2> getAllEntitiesFromTable(){
+		logger.info("**** inside getAllEntitiesFromTable() begins");
 		List<OasisPoc2> entityList = service.getAllEntitiesFromTable();
+		logger.info("**** inside getAllEntitiesFromTable() ends");
 		return entityList;
 	}
 	
+	/**************
+	 * Method: updateDynamicTemplateEntities 
+	 * Purpose: This method will update the entities stored in Oasis_Poc2 Table based on the information entered in frontend
+	 * Input parameters: List<OasisPoc2>
+	 * @return void
+	 */
 	@PutMapping("/updateDynamicEntity")
 	public void updateDynamicTemplateEntities(@RequestBody List<OasisPoc2> poc2EntityList){
-		logger.info("Poc2DatabaseController - updateDynamicTemplateEntities() begins");
+		logger.info("**** inside updateDynamicTemplateEntities() begins");
 		service.updateDynamicTemplateEntities(poc2EntityList);
-		logger.info("Poc2DatabaseController - updateDynamicTemplateEntities() ends");
+		logger.info("**** inside updateDynamicTemplateEntities() ends");
 	}
 }

@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import javax.sql.DataSource;
 
@@ -40,7 +41,7 @@ public class Poc1DatabaseService {
 	 * @return Success/Failure String as response
 	 */
 	public String checkDatabaseConnection() throws SQLException {	
-		logger.info("Poc1DatabaseService - checkDatabaseConnection() begins");
+		logger.info("**** inside checkDatabaseConnection() begins ****");
 		String response ="";
 		if(datasource.getConnection().isValid(1000)) {
 			logger.info("Database connection valid = {}"+ datasource.getConnection().isValid(1000));
@@ -53,21 +54,26 @@ public class Poc1DatabaseService {
 		}else {
 			response = "Error in connecting database. Please check the connection.";
 		}
-		logger.info("Poc1DatabaseService - checkDatabaseConnection() ends");
+		logger.info("**** inside checkDatabaseConnection() ends ****");
 		return response;
 	}
 	
 	/**************
 	 * Method: getAllEntitiesfromDatabase 
-	 * Purpose: This method will return all the entity values store in DB
+	 * Purpose: This method will return all values store in Oasis_Poc1 table
 	 * Input parameters: None
 	 * @return List <Oasis_Poc1>
 	 */	
 	public List<OasisPoc1> getAllEntitiesfromDatabase(){
-		logger.info("Poc1DatabaseService - getAllEntitiesfromDb() begins");
+		logger.info("*** inside getAllEntitiesfromDb() begins ****");
 		List<OasisPoc1> entityList = new ArrayList<OasisPoc1>();
 		entityList=repository.findAll();
-		logger.info("Poc1DatabaseService - getAllEntitiesfromDb() ends");
+		if(Objects.nonNull(entityList)&& entityList.size()!=0) {
+			logger.info("**** Respose : "+ entityList.toString()+" ****");
+		}else {
+			logger.error("Entity List is empty is Database");
+		}
+		logger.info("**** inside getAllEntitiesfromDb() ends ****");
 		return entityList;
 	}
 	

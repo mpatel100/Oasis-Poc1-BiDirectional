@@ -41,7 +41,7 @@ public class Poc1Service {
 	 * @return Token as response
 	 */
 	public ResponseEntity<Token> getGenerateTokenAPI(){			
-		logger.info("inside getGenerateTokenAPI()");
+		logger.info("**** inside getGenerateTokenAPI() begins ****");
 		RestTemplate restTemplate = new RestTemplate();
 		String url = "https://lrcgo.maps.arcgis.com/sharing/generateToken";
 		logger.info("*** ArcGIS Enterprise URL to Generate Token API: " + url);
@@ -60,14 +60,14 @@ public class Poc1Service {
 		ResponseEntity<Token> response = restTemplate.postForEntity(url, request , Token.class);
 		if(Objects.nonNull(response)) {
 		logger.info("Token received successfully from ArcGIS Enterprise Generate Token API");
-		logger.info("Response:" + response.getBody());
+		logger.info(" **** Response:" + response.getBody());
 		}else {
 			logger.error("ArcGIS Enterprise Generate Token API Call Failed : Empty Token");
 		}
 		
 		receivedToken = response.getBody().getToken();
 		
-		logger.info("end of getGenerateTokenAPI()");
+		logger.info("**** inside getGenerateTokenAPI() ends ****");
 		return response;
 	}
 
@@ -79,7 +79,7 @@ public class Poc1Service {
 	 */
 	public ResponseEntity<WellSubsetQuery> getQueryAllWells(){	
 		
-		logger.info("inside getQueryAllWells()");
+		logger.info("****  inside getQueryAllWells() begins ****");
 		RestTemplate restTemplate = new RestTemplate();
 		
 		//Generates a token automatically.
@@ -104,15 +104,15 @@ public class Poc1Service {
 		
 		ResponseEntity<WellSubsetQuery> response = restTemplate.postForEntity(tokenUrl,request,WellSubsetQuery.class);
 		if(Objects.nonNull(response)) {
-			logger.info("..Response received successfully from ArcGIS Petroleum Well API ..");
+			logger.info(" Response received successfully from ArcGIS Petroleum Well API : "+ response.getBody());
 			WellSubsetQuery petroleumWell = response.getBody();
-			logger.info("Petroleum Well API Response:" + petroleumWell);
+			logger.info(" **** Petroleum Well API Response:" + petroleumWell);
 			responseEntity= ResponseEntity.status(200).contentType(MediaType.APPLICATION_JSON).body(petroleumWell);
 		}else {
 			logger.error("..ArcGIS Enterprise Petroleum Well API Call Failed : Empty Response..");
 			responseEntity=ResponseEntity.noContent().build();
 		}
-		logger.info("..Testing ArcGIS Enterprise Petroleum Well API ends..");			
+		logger.info("****  inside getQueryAllWells() ends ****");			
 		return responseEntity;
 		
 	}
@@ -125,7 +125,7 @@ public class Poc1Service {
 	 * @return Tile Query response: TileSubsetQuery
 	 */
 	public ResponseEntity<TileSubsetQuery> getTileDrainageAreaSubsetQuery(){			
-		logger.info("Poc1Service - getTileDrainageAreaSubsetQuery() begins");		
+		logger.info("****  inside getTileDrainageAreaSubsetQuery() begins ****");		
 		RestTemplate restTemplate = new RestTemplate();
 		ResponseEntity<TileSubsetQuery> responseEntity =null;	
 		
@@ -156,7 +156,7 @@ public class Poc1Service {
 			logger.error("*** ArcGIS Enterprise Tile Drainage Area Subset Call Failed : Empty Response..");				
 			responseEntity=ResponseEntity.noContent().build();
 		}		
-		logger.info("Poc1Service - getTileDrainageAreaSubsetQuery() ends");			
+		logger.info("**** inside getTileDrainageAreaSubsetQuery() ends ****");			
 		return responseEntity;			
 	}
 	
