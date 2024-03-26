@@ -1,7 +1,7 @@
 package com.oasis.poc1.service;
 
 import java.sql.Timestamp;
-import java.time.Instant;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -58,9 +58,10 @@ public class Poc2DatabaseService {
 		
 		logger.info("**** inside updateDynamicTemplateEntities() begins *****");
 		if(Objects.nonNull(entityList) && entityList.size()>0) {
+			
 			for (OasisPoc2 entity: entityList) {
 				//Setting timestamp before saving
-				entity.setTimestamp(Timestamp.from(Instant.now()).toString());
+				entity.setTimestamp(new Timestamp(System.currentTimeMillis()).toString());
 				repository.save(entity);				
 			}
 			logger.info("All template entities are updated in DB :"+ entityList.toString());
