@@ -11,6 +11,11 @@
       display: none;
     }
 
+    .message {
+      margin: 10px;
+      font-weight: 600;
+    }
+
     nav {
       color: white;
       height: 80px;
@@ -21,8 +26,6 @@
     form {
       margin-top: 20px; 
       padding-bottom: 20px; 
-
-      height: calc(100% - 60px);
       formly-form {
         height: calc(100% - 10px);
         overflow: auto;

@@ -14,7 +14,7 @@ export class DynamicFormComponent implements OnInit {
   fields: FormlyFieldConfig[] = [];
   formData: any;
   emailPattern = '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}';
-
+  submitted = false
   constructor(private aosisMappingService: AosisMappingService) { }
 
   ngOnInit(): void {
@@ -146,7 +146,7 @@ export class DynamicFormComponent implements OnInit {
     });
   }
 
-  onSubmit() {
+  onSubmit(isDownload?: boolean) {
     if(this.form.invalid) return;
     console.log(this.model);
     if(this.formData) {
@@ -158,10 +158,17 @@ export class DynamicFormComponent implements OnInit {
         return row;
       });
      this.aosisMappingService.submitFormData(outputData).subscribe(() => {    
-        var a = document.createElement('a');
-        a.setAttribute('href', 'data:json;charset=utf-u,'+encodeURIComponent(JSON.stringify(outputData)));
-        a.setAttribute('download', 'output.json');
-        a.click();
+        console.log('Successfully submitted');
+        this.submitted = true;
+        setTimeout(() => {
+          this.submitted = false;
+        }, 2000);
+        if(isDownload) {
+          var a = document.createElement('a');
+          a.setAttribute('href', 'data:json;charset=utf-u,'+encodeURIComponent(JSON.stringify(outputData)));
+          a.setAttribute('download', 'output.json');
+          a.click();
+        }
       });
     }
   }

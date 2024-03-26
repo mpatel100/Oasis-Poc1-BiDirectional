@@ -1,7 +1,9 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
+ <div *ngIf="submitted" class="message alert alert-success">Submitted Successfully</div>
+ <form [formGroup]="form" (ngSubmit)="onSubmit()" [ngStyle]="{'height': (submitted ? 'calc(100% - 130px)' : 'calc(100% - 60px)')}">
     <formly-form [model]="model" [fields]="fields" [form]="form"></formly-form>
     <div class="col-md-12 footer-container">
       <button type="button" class="col-md-1 btn btn-outline-primary submit-button" (click)="onCancel()">Cancel</button>
-      <button type="submit" class="col-md-1 btn btn-primary submit-button">Submit</button>
+      <button type="button" (click)="onSubmit(false)" class="col-md-1 btn btn-primary submit-button">Submit</button>
+      <button type="button" (click)="onSubmit(true)" class="col-md-1 btn btn-primary submit-button">Download</button>
     </div>
   </form>
