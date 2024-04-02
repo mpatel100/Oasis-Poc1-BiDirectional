@@ -52,6 +52,13 @@ class Poc1ServiceTest {
 		assertEquals(true,response.getBody().isSsl());		
 	}
 	
+	/**************
+	 * Method: testGetQueryAllWells 
+	 * Purpose: This method will test all success scenarios when receiving 
+	 *         Well Query response from ArcGis Enterprise API
+	 * Input parameters: None
+	 * 
+	 */
 	@Test
 	public void testGetQueryAllWells() {
 		ResponseEntity<WellSubsetQuery> response = service.getQueryAllWells();
@@ -63,6 +70,13 @@ class Poc1ServiceTest {
 		assertThat(response.getBody()).isInstanceOf(WellSubsetQuery.class);
 	}
 
+	/**************
+	 * Method: testGetTileDrainageAreaSubsetQuery 
+	 * Purpose: This method will test all success scenarios when receiving 
+	 *         Tile Drainage Subset Query response from ArcGis Enterprise API
+	 * Input parameters: None
+	 * 
+	 */
 	@Test
 	public void testGetTileDrainageAreaSubsetQuery() {
 		ResponseEntity<TileSubsetQuery> response = service.getTileDrainageAreaSubsetQuery();
@@ -70,7 +84,7 @@ class Poc1ServiceTest {
 		assertThat(response.getBody()).isNotNull();	
 		//Testing response json has no null fields
 		assertThat(response.getBody()).hasNoNullFieldsOrProperties();
-		//Testing response json is an instance of WellSubsetQuery Class
+		//Testing response json is an instance of TileSubsetQuery Class
 		assertThat(response.getBody()).isInstanceOf(TileSubsetQuery.class);
 	}
 
