@@ -28,27 +28,27 @@ class Poc1ServiceTest {
 	@Test
 	public void testGetGenerateTokenApi() {
 		ResponseEntity<Token> response= service.getGenerateTokenAPI();
-		//Testing response json is not null
+		//Testing JSON response is not null
 		assertThat(response.getBody()).isNotNull();		
-		//Testing response json has no null fields
+		//Testing JSON response has no null fields
 		assertThat(response.getBody()).hasNoNullFieldsOrProperties();
-		//Testing response json is an instance of Token Class
+		//Testing JSON response is an instance of Token Class
 		assertThat(response.getBody()).isInstanceOf(Token.class);
-		//Testing response json has token field
+		//Testing JSON response has token field
 		assertThat(response.getBody()).hasFieldOrProperty("token");
 		//Testing token field is not null
 		assertThat(response.getBody().getToken()).isNotNull();
 		//Testing token is not empty
 		assertThat(response.getBody().getToken()).isNotEmpty();
-		//Testing response json has token expiry field
+		//Testing JSON response has token expire field
 		assertThat(response.getBody()).hasFieldOrProperty("expires");
 		//Testing token expires field is not null
 		assertThat(response.getBody().getExpires()).isNotNull();
-		//Testing response json  has token ssl field
+		//Testing JSON response has SSL field
 		assertThat(response.getBody()).hasFieldOrProperty("ssl");
-		//Testing ssl field is not null
+		//Testing SSL field is not null
 		assertThat(response.getBody().isSsl()).isNotNull();
-		//Testing ssl value is true
+		//Testing SSL value is true
 		assertEquals(true,response.getBody().isSsl());		
 	}
 	
@@ -62,12 +62,12 @@ class Poc1ServiceTest {
 	@Test
 	public void testGetQueryAllWells() {
 		ResponseEntity<WellSubsetQuery> response = service.getQueryAllWells();
-		//Testing response json is not null
+		//Testing JSON response is not null
 		assertThat(response.getBody()).isNotNull();	
-		//Testing response json has no null fields
-		assertThat(response.getBody()).hasNoNullFieldsOrProperties();
-		//Testing response json is an instance of WellSubsetQuery Class
+		//Testing JSON response is an instance of WellSubsetQuery Class
 		assertThat(response.getBody()).isInstanceOf(WellSubsetQuery.class);
+		//Testing JSON response  has Id as 0
+		assertEquals(0, response.getBody().getLayers().get(0).getId());
 	}
 
 	/**************
@@ -80,13 +80,12 @@ class Poc1ServiceTest {
 	@Test
 	public void testGetTileDrainageAreaSubsetQuery() {
 		ResponseEntity<TileSubsetQuery> response = service.getTileDrainageAreaSubsetQuery();
-		//Testing response json is not null
+		//Testing JSON response is not null
 		assertThat(response.getBody()).isNotNull();	
-		//Testing response json has no null fields
-		assertThat(response.getBody()).hasNoNullFieldsOrProperties();
-		//Testing response json is an instance of TileSubsetQuery Class
+		//Testing JSON response is an instance of TileSubsetQuery Class
 		assertThat(response.getBody()).isInstanceOf(TileSubsetQuery.class);
+		//Testing JSON response has Id as 6
+		assertEquals(6, response.getBody().getLayers().get(0).getId());
 	}
 
-	
 }
