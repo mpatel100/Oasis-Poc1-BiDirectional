@@ -50,6 +50,33 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+        	<groupId>com.azure</groupId>
+        	<artifactId>azure-storage-blob</artifactId>
+        	<version>12.23.0</version>
+    	</dependency>
+    	<dependency>
+     	 	<groupId>com.azure.spring</groupId>
+     	 	<artifactId>spring-cloud-azure-dependencies</artifactId>
+     	 	<version>5.11.0</version>
+      	 	<type>pom</type>
+      	 	<scope>import</scope>
+    	</dependency>
+    	<dependency>
+        	<groupId>com.azure.spring</groupId>
+        	<artifactId>azure-spring-boot-starter</artifactId>
+        	<version>4.0.0</version>
+    	</dependency>
+    	<dependency>
+        	<groupId>com.azure.spring</groupId>
+        	<artifactId>azure-spring-boot-starter-storage</artifactId>
+        	<version>4.0.0</version>
+    	</dependency>
+    	<dependency>
+  			<groupId>io.projectreactor</groupId>
+  			<artifactId>reactor-core</artifactId>
+  			<version>3.4.22</version>
+		</dependency>
 	</dependencies>
 
 	<build>

@@ -5,3 +5,7 @@
 </div>
 <div class="welcome-message" *ngIf="welcomeMessage"><span>Welcome Message:</span> {{welcomeMessage}}</div>
 <div class="token-message" *ngIf="tokenMessage?.token"><span>Token:</span> {{tokenMessage.token}}</div>
+<div>
+    <span><input type="file" (change)="onFileSelected($event)"></span>
+    <span><button (click)="onUpload()">Upload</button></span>
+</div>
